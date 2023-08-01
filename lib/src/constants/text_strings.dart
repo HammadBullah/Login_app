@@ -1,4 +1,6 @@
 
+const String tLogin = "Login";
+const String tSignup = "Signup";
 
 const String tAppName = "Open it";
 const String tAppTagLine = "Your Account \nYour Data.";
@@ -13,3 +15,7 @@ const String tOnBoardingSubTitle3 = "Save time by using this app";
 const String tOnBoardingCounter1 = "1/3";
 const String tOnBoardingCounter2 = "2/3";
 const String tOnBoardingCounter3 = "3/3";
+
+
+const String tWelcomeTitle = "Build Your Login Page";
+const String tWelcomeSubTitle = "Login or Sign up";
