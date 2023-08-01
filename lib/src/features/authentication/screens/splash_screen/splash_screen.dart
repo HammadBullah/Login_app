@@ -37,18 +37,17 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            alignment: AlignmentDirectional.center,
-            child: Obx(
+            Obx(
               () => AnimatedPositioned(
                 duration: Duration(milliseconds: 2400),
                 bottom: splashController.animate.value ? 0 : -100,
                 child: AnimatedOpacity(
                   duration: Duration(milliseconds: 2000),
                   opacity: splashController.animate.value ? 1: 0,
-                    child: Image(image: AssetImage(tSplashImage),
-                    ),
+                        child: Image(image: AssetImage(tSplashImage),
+                          alignment: Alignment.center,
                 ),
+
               ),
             ),
           ),
