@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:login_app/src/constants/colors.dart';
 class HTextTheme {
   static TextTheme lightTextTheme = TextTheme(
-      headline2: GoogleFonts.montserrat(
+      headline2: GoogleFonts.poppins(
         color: tDarkColor,
         fontSize: 40,
         fontWeight: FontWeight.w700,
@@ -20,7 +20,7 @@ class HTextTheme {
       ),
       subtitle1: GoogleFonts.poppins(
         color: tDarkColor,
-        fontSize: 18,
+        fontSize: 14,
           fontWeight: FontWeight.normal
       ),
       headline6: GoogleFonts.montserrat(
@@ -45,8 +45,8 @@ class HTextTheme {
         fontWeight: FontWeight.normal
       ),
       subtitle1: GoogleFonts.poppins(
-        color: tDarkColor,
-        fontSize: 18, fontWeight: FontWeight.normal
+        color: tWHiteColor,
+        fontSize: 14, fontWeight: FontWeight.normal
       ),
       headline6: GoogleFonts.montserrat(
         color: tWHiteColor,

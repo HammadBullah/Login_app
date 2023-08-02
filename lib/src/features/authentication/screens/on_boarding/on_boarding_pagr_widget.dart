@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:login_app/src/constants/colors.dart';
 import 'package:login_app/src/features/authentication/models/model_on_boarding.dart';
 
 import '../../../../constants/sizes.dart';
@@ -27,12 +28,12 @@ class OnBoardingPageWidget extends StatelessWidget {
           Image(image: AssetImage(model.image), height: size.height *0.35,),
           Column(
             children: [
-              Text(model.title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,),
-              Text(model.subTitle, textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle2,),
+              Text(model.title, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3!.copyWith(color: tDarkColor),),
+              Text(model.subTitle, textAlign: TextAlign.center, style: Theme.of(context).textTheme.subtitle2!.copyWith(color: tDarkColor),),
             ],
           ),
 
-          Text(model.counterText, style: Theme.of(context).textTheme.headline6,),
+          Text(model.counterText, style: Theme.of(context).textTheme.headline6!.copyWith(color: tDarkColor),),
           const SizedBox(
             height: 40,
           )

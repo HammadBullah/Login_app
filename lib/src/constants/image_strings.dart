@@ -8,3 +8,5 @@ const String tOnBoardingImage2 = "assets/images/onboarding_images/cloud-computin
 const String tOnBoardingImage3 = "assets/images/onboarding_images/social-meet-up.png";
 
 const String tWelcomeScreenImage = "assets/images/welcome_screen/about-us-2_kw14le-removebg-preview (1).png";
+
+const String tGoogleLogoImage = "assets/logo/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png";

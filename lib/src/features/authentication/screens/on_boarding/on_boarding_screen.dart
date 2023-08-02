@@ -29,7 +29,7 @@ class OnBoardingScreen extends StatelessWidget {
             pages: obController.pages,
             onPageChangeCallback: obController.onPageChangedCallback,
             liquidController: obController.controller,
-            slideIconWidget: Icon(Icons.arrow_back_ios),
+            slideIconWidget: Icon(Icons.arrow_back_ios, color: tDarkColor,),
             enableSideReveal: true,
           ),
           Positioned(
@@ -47,7 +47,7 @@ class OnBoardingScreen extends StatelessWidget {
                     color: tDarkColor,
                     shape: BoxShape.circle,
                   ),
-                child: Icon(Icons.arrow_forward_ios),
+                child: Icon(Icons.arrow_forward_ios,),
               ),)),
           Positioned(
               top: 50,

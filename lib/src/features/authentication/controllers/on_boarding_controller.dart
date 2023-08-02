@@ -6,6 +6,7 @@ import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/constants/text_strings.dart';
 import 'package:login_app/src/features/authentication/models/model_on_boarding.dart';
 import 'package:login_app/src/features/authentication/screens/on_boarding/on_boarding_pagr_widget.dart';
+import 'package:login_app/src/features/authentication/screens/welcome/welcome_secreen.dart';
 
 class OnBoardingController extends GetxController {
 
@@ -42,8 +43,18 @@ class OnBoardingController extends GetxController {
 
   animateToNextSlide(){
     int nextPage = controller.currentPage + 1;
-    controller.animateToPage(page: nextPage);
+    if (nextPage >= pages.length) {
+      // Navigate to WelcomeScreen if the current page is the last page
+      Get.off(WelcomeScreen());
+    } else {
+      controller.animateToPage(page: nextPage);
+    }
   }
+
   onPageChangedCallback(int activePageIndex) => currentPage.value = activePageIndex;
-  skip() => controller.jumpToPage(page: 2);
+
+  skip() {
+    // Directly navigate to WelcomeScreen
+    Get.off(WelcomeScreen());
+  }
 }
