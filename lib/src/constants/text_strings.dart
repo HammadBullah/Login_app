@@ -25,9 +25,20 @@ const String tLoginTitle = "Welcome Back,";
 const String tLoginSubTitle = "Make it work, make it right, make it fast.";
 const String tRememberMe = "Remember Me?";
 const String tAlreadyHaveAnAccount = "Already have an Account? ";
-const String tForgetPassword = "Forget Passowrd?";
+const String tForgetPassword = "Forgot Password?";
 const String tSignInWithGoogle = "Sign In With Google";
 const String tDontHaveAnAccount = "Don't Have an Account? ";
 
 const String tSignUpTitle = "Get On Board!";
 const String tSignUpSubTitle = "Create your profile to start your Journey...";
+
+const String tForgetPasswordTitle = "Make Selection!";
+const String tForgetPasswordSubTitle = "Select one of the options given below to reset your password";
+const String tResetViaEMail = "Reset via E-Mail Verification.";
+const String tResetViaPhone = "Reset via Phone Verification.";
+const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive OTP";
+const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP ";
+
+const String tOtpTitle = "CO\nDE";
+const String tOtpSubtitle = "Verification";
+const String tOtpMessage = "Enter the verification code sent at ";

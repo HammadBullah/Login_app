@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   liquid_swipe: ^3.0.0
   smooth_page_indicator: ^1.1.0
+  flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
     - assets/images/onboarding_images/
     - assets/images/welcome_screen/
     - assets/logo/
+    - assets/images/forget_password/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

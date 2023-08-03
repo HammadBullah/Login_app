@@ -22,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
             padding: const EdgeInsets.all(tDefaultSize),
             child:  Column(
               children : [
-                FormHeaderWidget(
+                const FormHeaderWidget(
                 image: tWelcomeScreenImage,
                 title: tSignUpTitle,
                 subTitle: tSignUpSubTitle,
