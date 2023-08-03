@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:login_app/src/constants/sizes.dart';
 import 'package:login_app/src/constants/text_strings.dart';
+import 'package:login_app/src/features/authentication/controllers/signup_controller.dart';
 
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -9,13 +12,17 @@ class SignUpFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
+    final _formKey = GlobalKey<FormState>();
     return Container(
       padding: EdgeInsets.symmetric(vertical: tFormHeight-10),
       child: Form(
+        key: _formKey,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                controller: controller.fullName,
                 decoration: const InputDecoration(
                   label: Text('Full Name'),
                   prefixIcon: Icon(Icons.person_outline_rounded),
@@ -23,6 +30,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               const SizedBox(height: tFormHeight-20,),
               TextFormField(
+                controller: controller.email,
                 decoration: const InputDecoration(
                   label: Text('E-mail'),
                   prefixIcon: Icon(Icons.email_outlined),
@@ -30,6 +38,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               const SizedBox(height: tFormHeight-20,),
               TextFormField(
+                controller: controller.phoneNo,
                 decoration: const InputDecoration(
                   label: Text('Phone Number'),
                   prefixIcon: Icon(Icons.numbers),
@@ -37,6 +46,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               const SizedBox(height: tFormHeight-20,),
               TextFormField(
+                controller: controller.password,
                 decoration: const InputDecoration(
                   label: Text('Password'),
                   prefixIcon: Icon(Icons.fingerprint),
@@ -45,7 +55,11 @@ class SignUpFormWidget extends StatelessWidget {
               const SizedBox(height: tFormHeight-20,),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    SignUpController.instance.registerUser(controller.email.text.trim(),controller.password.text.trim());
+                  }
+                },
                   child: Text(tSignup.toUpperCase()),
                 ),
               )

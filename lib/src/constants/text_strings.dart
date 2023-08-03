@@ -42,3 +42,12 @@ const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP 
 const String tOtpTitle = "CO\nDE";
 const String tOtpSubtitle = "Verification";
 const String tOtpMessage = "Enter the verification code sent at ";
+
+const String tDashboardTitle = "Welcome To";
+const String tDashboardHeading = "HomeShop";
+const String tDashboardSearch = "Search...";
+const String tDashboardBannerTitle1 = "Nike";
+const String tDashboardBannerTitle2 = "Adidas";
+const String tDashboardBannerSubTitle = "Shop";
+const String tDashboardButton = "View All";
+const String tDashboardTrending = "Trending";
