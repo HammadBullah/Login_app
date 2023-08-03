@@ -24,7 +24,10 @@ const String tWelcomeSubTitle = "Login or Sign up";
 const String tLoginTitle = "Welcome Back,";
 const String tLoginSubTitle = "Make it work, make it right, make it fast.";
 const String tRememberMe = "Remember Me?";
-const String tAlreadyHaveAnAccount = "Already have an Account?";
+const String tAlreadyHaveAnAccount = "Already have an Account? ";
 const String tForgetPassword = "Forget Passowrd?";
 const String tSignInWithGoogle = "Sign In With Google";
 const String tDontHaveAnAccount = "Don't Have an Account? ";
+
+const String tSignUpTitle = "Get On Board!";
+const String tSignUpSubTitle = "Create your profile to start your Journey...";

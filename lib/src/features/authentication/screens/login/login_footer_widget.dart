@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/constants/sizes.dart';
 import 'package:login_app/src/constants/text_strings.dart';
+import 'package:login_app/src/features/authentication/screens/signup/signup_screen.dart';
 
 class LoginFooterWidget extends StatelessWidget {
   const LoginFooterWidget({
@@ -23,7 +26,7 @@ class LoginFooterWidget extends StatelessWidget {
               label: Text(tSignInWithGoogle, style: Theme.of(context).textTheme.subtitle1,)),
         ),
         const SizedBox(height: tFormHeight-20,),
-        TextButton(onPressed: (){},
+        TextButton(onPressed: () => Get.to(()=> const SignUpScreen()),
           child: Text.rich(
             TextSpan(
                 text: tDontHaveAnAccount,
