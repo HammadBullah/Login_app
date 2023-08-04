@@ -45,7 +45,7 @@ class OnBoardingController extends GetxController {
     int nextPage = controller.currentPage + 1;
     if (nextPage >= pages.length) {
       // Navigate to WelcomeScreen if the current page is the last page
-      Get.off(WelcomeScreen());
+      Get.offAll(() => WelcomeScreen());
     } else {
       controller.animateToPage(page: nextPage);
     }

@@ -12,7 +12,7 @@ class AuthenticationRepository extends GetxController {
 
   final auth = FirebaseAuth.instance;
   late Rx<User?> firebaseUser;
-  var verificationId = ''.obs;
+  var verificationId = '';
 
 
 
@@ -25,9 +25,15 @@ class AuthenticationRepository extends GetxController {
   }
 
   _setInitialScreen(User? user) {
-    user == null
-        ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const Dashboard());
+    if (user == null) {
+      // If user is null, navigate to WelcomeScreen after a delay
+      Future.delayed(Duration(seconds: 5), () {
+        Get.offAll(() => OnBoardingScreen());
+      });
+    } else {
+      // If user is not null, navigate to Dashboard immediately
+      Get.offAll(() => const Dashboard());
+    }
   }
 
   Future<void> phoneAuthentication(String phoneNo) async {
@@ -45,7 +51,7 @@ class AuthenticationRepository extends GetxController {
         }
       },
       codeSent: (verificationId, resendToken) {
-        this.verificationId.value = verificationId;
+        this.verificationId = verificationId;
       },
       codeAutoRetrievalTimeout: (verificationId) {
       },
@@ -56,7 +62,7 @@ class AuthenticationRepository extends GetxController {
   Future<bool> verifyOTP(String otp) async {
 
      var credentials = await auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: this.verificationId.value, smsCode: otp));
+        verificationId: this.verificationId, smsCode: otp));
      return credentials.user!= null ? true : false;
   }
 

@@ -12,6 +12,12 @@ void main(){
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) { Get.put(AuthenticationRepository());});
 
+  Get.config(
+    enableLog: true,
+    defaultOpaqueRoute: true,
+    defaultPopGesture: true,
+  );
+
   runApp(App());
 }
 
