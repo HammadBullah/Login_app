@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:login_app/firebase_options.dart';
+import 'package:login_app/src/features/authentication/controllers/otp_controller.dart';
 import 'package:login_app/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:login_app/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:login_app/src/utils/theme/theme.dart';
@@ -10,11 +11,13 @@ import 'package:login_app/src/utils/theme/theme.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) { Get.put(AuthenticationRepository());});
-  runApp(const App());
+
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+  var otpController = Get.put(OTPController());
 
   @override
   Widget build(BuildContext context) {
