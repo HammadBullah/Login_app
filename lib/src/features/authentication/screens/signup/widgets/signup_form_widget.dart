@@ -25,7 +25,10 @@ class SignUpFormWidget extends StatelessWidget {
             children: [
               TextFormField(
                 controller: controller.fullName,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+                  ),
                   label: Text('Full Name'),
                   prefixIcon: Icon(Icons.person_outline_rounded),
                 ),
@@ -34,6 +37,9 @@ class SignUpFormWidget extends StatelessWidget {
               TextFormField(
                 controller: controller.email,
                 decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+                  ),
                   label: Text('E-mail'),
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
@@ -42,6 +48,9 @@ class SignUpFormWidget extends StatelessWidget {
               TextFormField(
                 controller: controller.phoneNo,
                 decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+                  ),
                   label: Text('Phone Number'),
                   prefixIcon: Icon(Icons.numbers),
                 ),
@@ -50,6 +59,9 @@ class SignUpFormWidget extends StatelessWidget {
               TextFormField(
                 controller: controller.password,
                 decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+                  ),
                   label: Text('Password'),
                   prefixIcon: Icon(Icons.fingerprint),
                 ),
@@ -59,8 +71,8 @@ class SignUpFormWidget extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(onPressed: (){
                   if(_formKey.currentState!.validate()){
-                    //SignUpController.instance.registerUser(controller.email.text.trim(),controller.password.text.trim());
-                    SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
+                    SignUpController.instance.registerUser(controller.email.text.trim(),controller.password.text.trim());
+                    //SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
                     Get.to(() => const OTPScreen());
                   }
                 },

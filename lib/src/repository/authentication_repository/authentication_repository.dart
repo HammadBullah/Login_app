@@ -5,6 +5,7 @@ import 'package:login_app/src/features/authentication/screens/on_boarding/on_boa
 import 'package:login_app/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:login_app/src/features/authentication/screens/welcome/welcome_secreen.dart';
 import 'package:login_app/src/features/core/screen/dashboard/dashboard.dart';
+import 'package:login_app/src/repository/authentication_repository/exceptions/signin_email_password_failure.dart';
 import 'package:login_app/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -66,14 +67,18 @@ class AuthenticationRepository extends GetxController {
      return credentials.user!= null ? true : false;
   }
 
-  Future<void> createUserWithEmailAndPassword(
+  Future<bool> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      firebaseUser.value != null
-          ? Get.offAll(() => const Dashboard())
-          : Get.to(() => const WelcomeScreen());
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      // If the userCredential is not null, the sign-in was successful.
+      bool isSignedIn = userCredential.user != null;
+
+      // Return true indicating a successful sign-in
+      return isSignedIn;
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');
@@ -84,15 +89,30 @@ class AuthenticationRepository extends GetxController {
       throw ex;
     }
 
-    Future<void> loginWithEmailAndPassword(
-        String email, String password) async {
-      try {
-        await auth.signInWithEmailAndPassword(
-            email: email, password: password);
-      } on FirebaseAuthException catch (e) {
-      } catch (_) {}
+    }
+  Future<bool> signInWithEmailAndPassword(
+      String email, String password) async {
+    print('Email: $email, Password: $password');
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      // If the userCredential is not null, the sign-in was successful.
+      bool isSignedIn = userCredential.user != null;
 
-      Future<void> logout() async => await auth.signOut();
+      // Return true indicating a successful sign-in
+      return isSignedIn;
+    } on FirebaseAuthException catch (e) {
+      final ex = SignInWithEmailAndPasswordFailure(e.code);
+      print('Firebase Authentication Error: ${e.code} - ${e.message}');
+      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      throw ex;
+    } catch (e) {
+      print('Unexpected Error: $e');
+      final ex = SignInWithEmailAndPasswordFailure();
+      print('EXCEPTION - ${ex.message}');
+      throw ex;
     }
   }
-}
+    Future<void> logout() async => await auth.signOut();
+
+  }

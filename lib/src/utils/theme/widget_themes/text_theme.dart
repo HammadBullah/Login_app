@@ -21,7 +21,7 @@ class HTextTheme {
       subtitle1: GoogleFonts.poppins(
         color: tDarkColor,
         fontSize: 14,
-          fontWeight: FontWeight.normal
+          fontWeight: FontWeight.w500,
       ),
       headline6: GoogleFonts.montserrat(
         color: tDarkColor,

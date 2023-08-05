@@ -16,11 +16,29 @@ class LoginFooterWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("OR", style: Theme.of(context).textTheme.subtitle1,),
+
+        Row(
+          children: <Widget>[
+            Expanded(child: Divider()),
+
+            Text("OR", style: Theme.of(context).textTheme.subtitle1,),
+
+            Expanded(child: Divider()),
+          ],
+        ),
+
         const SizedBox(height: tFormHeight-10,),
         SizedBox(
+          height: 80,
           width: double.infinity,
-          child: OutlinedButton.icon(
+          child: FilledButton.icon(
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.blue[500]?.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+
+            ),
               icon: const Image(image: AssetImage(tGoogleLogoImage), width: 25.0),
               onPressed: (){},
               label: Text(tSignInWithGoogle, style: Theme.of(context).textTheme.subtitle1,)),

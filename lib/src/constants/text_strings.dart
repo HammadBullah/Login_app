@@ -51,3 +51,19 @@ const String tDashboardBannerTitle2 = "Adidas";
 const String tDashboardBannerSubTitle = "Shop";
 const String tDashboardButton = "View All";
 const String tDashboardTrending = "Trending";
+
+const String tProfile = 'Profile';
+const String tEditProfile = "Edit Profile";
+const String tLogoutDialogHeading = "Logout";
+const String tProfileHeading = "Hammad";
+const String tProfileSubHeading = "hammadbullah@gmail.com";
+
+const String tMenuLogout = tLogoutDialogHeading;
+const String tMenuSettings = "Settings";
+const String tMenuInformation = "Information";
+const String tMenuBilling = "Billing Details";
+const String tMenuManage = "User Management";
+
+const String tDelete = "Delete";
+const String tJoined = "Joined : ";
+const String tJoinedAt = "31 July 2023";

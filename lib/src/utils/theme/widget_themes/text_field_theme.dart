@@ -5,21 +5,24 @@ class TTextFormFieldTheme{
   TTextFormFieldTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme =
-      const InputDecorationTheme(
+      InputDecorationTheme(
           prefixIconColor: tSecondaryColor,
           border: OutlineInputBorder(),
           floatingLabelStyle: TextStyle(color: tSecondaryColor),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 2.0, color: tSecondaryColor),
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+                width: 2.0, color: tSecondaryColor),
           )
       );
 
   static InputDecorationTheme darkInputDecorationTheme =
-  const InputDecorationTheme(
+  InputDecorationTheme(
       prefixIconColor: tPrimaryColor,
       border: OutlineInputBorder(),
       floatingLabelStyle: TextStyle(color: tPrimaryColor),
       focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(width: 2.0, color: tPrimaryColor),
       )
   );

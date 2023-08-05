@@ -8,7 +8,7 @@ class TElevatedButtonTheme{
 
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       foregroundColor: tWHiteColor,
       backgroundColor: tSecondaryColor,
       textStyle: GoogleFonts.poppins(
@@ -21,7 +21,7 @@ class TElevatedButtonTheme{
 
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       foregroundColor: tSecondaryColor,
       backgroundColor: tWHiteColor,
       textStyle: GoogleFonts.poppins(

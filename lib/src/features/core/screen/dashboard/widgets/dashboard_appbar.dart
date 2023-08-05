@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:login_app/src/constants/colors.dart';
 import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/features/core/screen/profile/profile_screen.dart';
 import 'package:login_app/src/repository/authentication_repository/authentication_repository.dart';
 
 class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +26,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
           margin: const EdgeInsets.only(right: 20, top: 7),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: tCardBgColor),
           child: IconButton(onPressed: (){
-
+            Get.to(ProfileScreen());
           }, icon: const Image(image: AssetImage(tForgetPasswordImage))),
         )
       ],
