@@ -41,6 +41,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: f1a06ad4499ed9ab73703560d44893e6b9e66ce3923c9121f4ef3981c972057f
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.4"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      sha256: "86bd1865abbeb09a7d09da3e70364a09f894937270651fc611a1c6d6a9f7b02c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.15.3"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      sha256: ac2eeb2a7ab1928c3aacc30eed750fa839d6f620e112a5459e321df217be2f47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.3"
   collection:
     dependency: transitive
     description:
@@ -172,10 +196,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: "2776c66b3e97c6cdd58d1bd3281548b074b64f1fd5c8f82391f7456e38849567"
+      sha256: e20ff62b158b96f392bfc8afe29dee1503c94fbea2cbe8186fd59b756b8ae982
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.5"
+    version: "5.1.0"
   http:
     dependency: transitive
     description:

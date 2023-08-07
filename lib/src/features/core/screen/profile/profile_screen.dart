@@ -145,7 +145,9 @@ class ProfileScreen extends StatelessWidget {
                 isDark: isDark,
                 title: tMenuLogout,
                 icon: LineAwesomeIcons.alternate_sign_out,
-                onPress: () {},
+                onPress: () {
+                  AuthenticationRepository.instance.logout();
+                },
                 textColor: Colors.red,
                 endIcon: false,
               ),

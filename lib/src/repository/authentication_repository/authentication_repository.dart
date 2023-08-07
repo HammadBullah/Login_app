@@ -7,25 +7,32 @@ import 'package:login_app/src/features/authentication/screens/welcome/welcome_se
 import 'package:login_app/src/features/core/screen/dashboard/dashboard.dart';
 import 'package:login_app/src/repository/authentication_repository/exceptions/signin_email_password_failure.dart';
 import 'package:login_app/src/repository/authentication_repository/exceptions/signup_email_password_failure.dart';
+import 'package:login_app/src/repository/authentication_repository/user_repository.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
-  final auth = FirebaseAuth.instance;
-  late Rx<User?> firebaseUser;
-  var verificationId = '';
+  final _auth = FirebaseAuth.instance;
+  late final Rx<User?> _firebaseUser;
+  final _phoneVerificationId = ''.obs;
+
+  User? get firebaseUSer => _firebaseUser.value;
+  String get UserID => firebaseUSer?.uid ?? "";
+  String get getUserEmail => firebaseUSer?.email ?? "";
+
+  final userRepo = Get.put(UserRepository());
 
 
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 0));
-    firebaseUser = Rx<User?>(auth.currentUser);
-    firebaseUser.bindStream(auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
+    _firebaseUser = Rx<User?>(_auth.currentUser);
+    _firebaseUser.bindStream(_auth.userChanges());
+    setInitialScreen(_firebaseUser.value);
+    //ever(_firebaseUser, setInitialScreen);
   }
 
-  _setInitialScreen(User? user) {
+  setInitialScreen(User? user) {
     if (user == null) {
       // If user is null, navigate to WelcomeScreen after a delay
       Future.delayed(Duration(seconds: 5), () {
@@ -39,10 +46,10 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> phoneAuthentication(String phoneNo) async {
 
-    await auth.verifyPhoneNumber(
+    await _auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
       verificationCompleted: (credentials) async {
-        await auth.signInWithCredential(credentials);
+        await _auth.signInWithCredential(credentials);
       },
       verificationFailed: (e) {
         if (e.code == "invalid-phone-number") {
@@ -52,7 +59,7 @@ class AuthenticationRepository extends GetxController {
         }
       },
       codeSent: (verificationId, resendToken) {
-        this.verificationId = verificationId;
+        _phoneVerificationId.value = verificationId;
       },
       codeAutoRetrievalTimeout: (verificationId) {
       },
@@ -62,23 +69,16 @@ class AuthenticationRepository extends GetxController {
 
   Future<bool> verifyOTP(String otp) async {
 
-     var credentials = await auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: this.verificationId, smsCode: otp));
+     var credentials = await _auth.signInWithCredential(PhoneAuthProvider.credential(
+        verificationId: _phoneVerificationId.value, smsCode: otp));
      return credentials.user!= null ? true : false;
   }
 
-  Future<bool> createUserWithEmailAndPassword(
+  Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      // If the userCredential is not null, the sign-in was successful.
-      bool isSignedIn = userCredential.user != null;
-
-      // Return true indicating a successful sign-in
-      return isSignedIn;
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');
@@ -90,17 +90,11 @@ class AuthenticationRepository extends GetxController {
     }
 
     }
-  Future<bool> signInWithEmailAndPassword(
+  Future<void> loginWithEmailAndPassword(
       String email, String password) async {
     print('Email: $email, Password: $password');
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      // If the userCredential is not null, the sign-in was successful.
-      bool isSignedIn = userCredential.user != null;
-
-      // Return true indicating a successful sign-in
-      return isSignedIn;
+      _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       final ex = SignInWithEmailAndPasswordFailure(e.code);
       print('Firebase Authentication Error: ${e.code} - ${e.message}');
@@ -113,6 +107,5 @@ class AuthenticationRepository extends GetxController {
       throw ex;
     }
   }
-    Future<void> logout() async => await auth.signOut();
-
+    Future<void> logout() async => await _auth.signOut();
   }
