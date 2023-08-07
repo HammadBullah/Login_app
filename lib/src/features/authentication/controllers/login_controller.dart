@@ -29,7 +29,6 @@ class LoginController extends GetxController {
       auth.setInitialScreen(auth.firebaseUSer);
     }catch (e){
       isLoading.value = false;
-      SignInWithEmailAndPasswordFailure();
     }
   }
 
