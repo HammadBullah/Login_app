@@ -7,8 +7,6 @@ import 'package:login_app/src/repository/authentication_repository/user_reposito
 class ProfileController extends GetxController{
   static ProfileController get instance => Get.find();
 
-
-
   final _userRepo = Get.put(UserRepository());
   final _authRepo = Get.put(AuthenticationRepository());
 
