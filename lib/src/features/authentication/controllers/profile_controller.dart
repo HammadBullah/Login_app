@@ -10,8 +10,13 @@ class ProfileController extends GetxController{
   final _userRepo = Get.put(UserRepository());
   final _authRepo = Get.put(AuthenticationRepository());
 
+  final email = TextEditingController;
+  final password = TextEditingController;
+  final fullName= TextEditingController;
+  final phoneNo= TextEditingController;
+
   getUserData() {
-    final email = _authRepo.firebaseUSer?.email;
+    final email = _authRepo.firebaseUser?.email;
     if (email != null) {
       return _userRepo.getUserDetails(email);
     }else{

@@ -208,7 +208,8 @@ class UpdateProfileScreen extends StatelessWidget {
                       ]
                   );
             }else{
-                  return const Center(child:Text("Something went wrong"));
+                  print("Snapshot has no data"); // Add this line
+                  return const Center(child: Text("No user data available"));
                 }
             }else{
                 return const Center(child: CircularProgressIndicator());

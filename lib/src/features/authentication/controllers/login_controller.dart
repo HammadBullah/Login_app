@@ -26,13 +26,22 @@ class LoginController extends GetxController {
       }
       final auth = AuthenticationRepository.instance;
       await auth.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
-      auth.setInitialScreen(auth.firebaseUSer);
+      auth.setInitialScreen(auth.firebaseUser);
     }catch (e){
       isLoading.value = false;
     }
   }
 
-
-
+  Future<void> googleSignIn() async {
+    try{
+      isGoogleLoading.value = true;
+      final auth = AuthenticationRepository.instance;
+      await auth.signInWithGoogle();
+      isGoogleLoading.value = false;
+      auth.setInitialScreen(auth.firebaseUser);
+  } catch (e) {
+      isGoogleLoading.value = false;
+    }
+}
 
 }

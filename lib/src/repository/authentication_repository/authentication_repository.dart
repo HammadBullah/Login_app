@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login_app/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import 'package:login_app/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:login_app/src/features/authentication/screens/welcome/welcome_secreen.dart';
@@ -16,9 +17,9 @@ class AuthenticationRepository extends GetxController {
   late final Rx<User?> _firebaseUser;
   final _phoneVerificationId = ''.obs;
 
-  User? get firebaseUSer => _firebaseUser.value;
-  String get UserID => firebaseUSer?.uid ?? "";
-  String get getUserEmail => firebaseUSer?.email ?? "";
+  User? get firebaseUser => _firebaseUser.value;
+  String get UserID => firebaseUser?.uid ?? "";
+  String get getUserEmail => firebaseUser?.email ?? "";
 
   final userRepo = Get.put(UserRepository());
 
@@ -29,7 +30,7 @@ class AuthenticationRepository extends GetxController {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     setInitialScreen(_firebaseUser.value);
-    //ever(_firebaseUser, setInitialScreen);
+    ever(_firebaseUser, setInitialScreen);
   }
 
   setInitialScreen(User? user) {
@@ -94,7 +95,7 @@ class AuthenticationRepository extends GetxController {
       String email, String password) async {
     print('Email: $email, Password: $password');
     try {
-      _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       final ex = SignInWithEmailAndPasswordFailure(e.code);
       print('Firebase Authentication Error: ${e.code} - ${e.message}');
@@ -107,5 +108,48 @@ class AuthenticationRepository extends GetxController {
       throw ex;
     }
   }
+
+  Future<void> sendEmailVerification() async{
+    try {
+      _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      print('Firebase Authentication Error: ${e.code} - ${e.message}');
+    } catch (e) {
+      print('Unexpected Error: $e');
+    }
+
+  }
+
+
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+
+    } on FirebaseAuthException catch (e) {
+      final ex = SignInWithEmailAndPasswordFailure(e.code);
+      print('Firebase Authentication Error: ${e.code} - ${e.message}');
+      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      throw ex;
+    } catch (e) {
+      print('Unexpected Error: $e');
+      final ex = SignInWithEmailAndPasswordFailure();
+      print('EXCEPTION - ${ex.message}');
+      throw ex;
+    }
+
+  }
+
     Future<void> logout() async => await _auth.signOut();
   }

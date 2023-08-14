@@ -10,11 +10,14 @@ import 'package:login_app/src/features/authentication/screens/login/login_screen
 import 'package:login_app/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:login_app/src/features/authentication/screens/signup/widgets/signup_form_widget.dart';
 
+import '../../controllers/login_controller.dart';
+
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -53,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
 
                         ),
                         icon: const Image(image: AssetImage(tGoogleLogoImage), width: 25.0),
-                        onPressed: (){},
+                        onPressed: controller.isGoogleLoading.value ? (){} : () => controller.googleSignIn(),
                         label: Text(tSignInWithGoogle, style: Theme.of(context).textTheme.subtitle1,)),
                   ),
                   const SizedBox(height: tFormHeight-20,),
